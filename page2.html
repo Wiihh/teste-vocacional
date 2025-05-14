@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Resultados do Teste Vocacional</title>
+    <link rel="stylesheet" href="Style.css">
+    <style>
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Resultados do Teste Vocacional</h1>
+        <div id="result" aria-live="polite"></div>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const pairs = queryString.split("&");
+            for (const pair of pairs) {
+                if (pair === "") continue;
+                const [key, value] = pair.split("=");
+                params[decodeURIComponent(key)] = decodeURIComponent(value || "");
+            }
+            return params;
+        }
+
+        function analyzeResponses(answers) {
+            
+            if (!answers.q1 || !answers.q2 || !answers.q3 || !answers.q4) {
+                return "Por favor, responda todas as perguntas do teste.";
+            }
+
+            
+            const area = answers.q1.toLowerCase();
+            const isDesigner = answers.q2 === "designer";
+            const isAtendimento = answers.q3 === "atendimento";
+            const isAnalista = answers.q4 === "analista";
+
+            
+            const interestsCount = [isDesigner, isAtendimento, isAnalista].filter(Boolean).length;
+
+            
+            if (interestsCount === 0) {
+                return "Você não parece estar apto para as profissões atuais avaliadas. Considere explorar outras áreas ou buscar orientação profissional.";
+            }
+
+            
+            if (area === "tecnologia" && isAnalista) {
+                return "Programador(a) / Desenvolvedor(a) de Software";
+            }
+            if (isDesigner) {
+                return "Designer Gráfico / Digital";
+            }
+            if (isAtendimento && (area === "saúde" || area === "educação")) {
+                return "Atendimento / Suporte ao Cliente";
+            }
+            if (isAnalista && (area === "contábil" || area === "administrativa")) {
+                return "Analista de Dados / Cientista de Dados";
+            }
+            if (area === "tecnologia" || isAtendimento) {
+                return "Profissional de Marketing Digital / Social Media";
+            }
+
+            
+            return "Seu perfil é versátil! Considere profissões como Gestor(a) de Projetos ou Consultor(a) em sua área de atuação.";
+        }
+
+        const params = getQueryParams();
+        const resultDiv = document.getElementById("result");
+
+        if (Object.keys(params).length === 0) {
+            resultDiv.innerHTML = "Nenhuma resposta recebida. Por favor, faça o teste na página inicial.";
+        } else {
+            const profession = analyzeResponses(params);
+            resultDiv.innerHTML = `Seu perfil mais indicado é: <strong>${profession}</strong>.`;
+        }
+    </script>
+</body>
+</html>
