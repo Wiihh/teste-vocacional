@@ -121,23 +121,22 @@
         const form = document.getElementById('vocationalForm');
         const resultDiv = document.getElementById('result');
 
-        
-        const params = getQueryParams();
-        if (Object.keys(params).length > 0) {
-            const profession = analyzeResponses(params);
-            resultDiv.innerHTML = `Seu perfil mais indicado é: <strong>${profession}</strong>.`;
-            resultDiv.scrollIntoView({ behavior: 'smooth' });
-        }
+   
+        const previousAnswers = getQueryParams();
 
-       
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             const formData = new FormData(form);
-            const answers = {};
+            const currentAnswers = {};
             for (const [key, value] of formData.entries()) {
-                answers[key] = value;
+                currentAnswers[key] = value;
             }
-            const profession = analyzeResponses(answers);
+
+        
+            const combinedAnswers = { ...previousAnswers, ...currentAnswers };
+
+          
+            const profession = analyzeResponses(combinedAnswers);
             resultDiv.innerHTML = `Seu perfil mais indicado é: <strong>${profession}</strong>.`;
             resultDiv.scrollIntoView({ behavior: 'smooth' });
         });
