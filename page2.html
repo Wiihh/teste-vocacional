@@ -121,7 +121,6 @@
         const form = document.getElementById('vocationalForm');
         const resultDiv = document.getElementById('result');
 
-   
         const previousAnswers = getQueryParams();
 
         form.addEventListener('submit', function(event) {
@@ -132,10 +131,8 @@
                 currentAnswers[key] = value;
             }
 
-        
             const combinedAnswers = { ...previousAnswers, ...currentAnswers };
 
-          
             const profession = analyzeResponses(combinedAnswers);
             resultDiv.innerHTML = `Seu perfil mais indicado é: <strong>${profession}</strong>.`;
             resultDiv.scrollIntoView({ behavior: 'smooth' });
