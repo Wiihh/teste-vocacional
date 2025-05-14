@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>Resultados do Teste Vocacional</title>
+    <title>Teste Vocacional - Profissões Atuais</title>
     <link rel="stylesheet" href="Style.css">
     <style>
         #result {
@@ -12,11 +12,61 @@
             font-weight: bold;
             color: #222;
         }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div id="container">
-        <h1>Resultados do Teste Vocacional</h1>
+        <h1>Teste Vocacional - Profissões Atuais</h1>
+        <form id="vocationalForm">
+            <div class="question" id="q1">
+                <h3>1. Qual área você prefere trabalhar?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="tecnologia" required /> Tecnologia</label>
+                    <label><input type="radio" name="q1" value="saúde" /> Saúde</label>
+                    <label><input type="radio" name="q1" value="educação" /> Educação</label>
+                    <label><input type="radio" name="q1" value="contábil" /> Contábil</label>
+                    <label><input type="radio" name="q1" value="administrativa" /> Administrativa</label>
+                </div>
+            </div>
+
+            <div class="question" id="q2">
+                <h3>2. Você gosta de trabalhar com criatividade, como design ou arte digital?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="designer" required /> Sim</label>
+                    <label><input type="radio" name="q2" value="outro" /> Não</label>
+                </div>
+            </div>
+
+            <div class="question" id="q3">
+                <h3>3. Você tem interesse em interagir e ajudar pessoas diretamente?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="atendimento" required /> Sim</label>
+                    <label><input type="radio" name="q3" value="outro" /> Não</label>
+                </div>
+            </div>
+
+            <div class="question" id="q4">
+                <h3>4. Você gosta de trabalhar com análise de dados, estatísticas e números?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="analista" required /> Sim</label>
+                    <label><input type="radio" name="q4" value="outro" /> Não</label>
+                </div>
+            </div>
+
+            <button type="submit">Verificar Resultado</button>
+        </form>
+
         <div id="result" aria-live="polite"></div>
     </div>
 
@@ -34,26 +84,21 @@
         }
 
         function analyzeResponses(answers) {
-            
             if (!answers.q1 || !answers.q2 || !answers.q3 || !answers.q4) {
                 return "Por favor, responda todas as perguntas do teste.";
             }
 
-            
             const area = answers.q1.toLowerCase();
             const isDesigner = answers.q2 === "designer";
             const isAtendimento = answers.q3 === "atendimento";
             const isAnalista = answers.q4 === "analista";
 
-            
             const interestsCount = [isDesigner, isAtendimento, isAnalista].filter(Boolean).length;
 
-            
             if (interestsCount === 0) {
                 return "Você não parece estar apto para as profissões atuais avaliadas. Considere explorar outras áreas ou buscar orientação profissional.";
             }
 
-            
             if (area === "tecnologia" && isAnalista) {
                 return "Programador(a) / Desenvolvedor(a) de Software";
             }
@@ -70,19 +115,32 @@
                 return "Profissional de Marketing Digital / Social Media";
             }
 
-            
             return "Seu perfil é versátil! Considere profissões como Gestor(a) de Projetos ou Consultor(a) em sua área de atuação.";
         }
 
-        const params = getQueryParams();
-        const resultDiv = document.getElementById("result");
+        const form = document.getElementById('vocationalForm');
+        const resultDiv = document.getElementById('result');
 
-        if (Object.keys(params).length === 0) {
-            resultDiv.innerHTML = "Nenhuma resposta recebida. Por favor, faça o teste na página inicial.";
-        } else {
+        
+        const params = getQueryParams();
+        if (Object.keys(params).length > 0) {
             const profession = analyzeResponses(params);
             resultDiv.innerHTML = `Seu perfil mais indicado é: <strong>${profession}</strong>.`;
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
         }
+
+       
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const answers = {};
+            for (const [key, value] of formData.entries()) {
+                answers[key] = value;
+            }
+            const profession = analyzeResponses(answers);
+            resultDiv.innerHTML = `Seu perfil mais indicado é: <strong>${profession}</strong>.`;
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
