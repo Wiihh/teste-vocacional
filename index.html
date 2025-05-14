@@ -3,86 +3,59 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>Resultados do Teste Vocacional</title>
+    <title>Teste Vocacional - Profissões Atuais</title>
     <link rel="stylesheet" href="Style.css">
-    <style>
-        #result {
-            margin-top: 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #222;
-        }
-    </style>
 </head>
 <body>
     <div id="container">
-        <h1>Resultados do Teste Vocacional</h1>
-        <div id="result" aria-live="polite"></div>
+        <h1>Teste Vocacional - Profissões Atuais</h1>
+        <form id="vocationalForm" action="page2.html" method="GET">
+            <div class="question" id="q1">
+                <h3>1. Atualmente você tem trabalhado em qual tipo de área?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="Administrativa" required /> Administrativa</label>
+                    <label><input type="radio" name="q1" value="Saúde" /> Saúde</label>
+                    <label><input type="radio" name="q1" value="Tecnologia" /> Tecnologia</label>
+                    <label><input type="radio" name="q1" value="Jurídica" /> Jurídica</label>
+                    <label><input type="radio" name="q1" value="Educação" /> Educação</label>
+                    <label><input type="radio" name="q1" value="Contábil" /> Contábil</label>
+                </div>
+            </div>
+
+            <div class="question" id="q2">
+                <h3>2. Você gosta de trabalhar com criatividade, como design ou arte digital?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="designer" required /> Sim</label>
+                    <label><input type="radio" name="q2" value="outro" /> Não</label>
+                </div>
+            </div>
+
+            <div class="question" id="q3">
+                <h3>3. Você tem interesse em interagir e ajudar pessoas diretamente?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="atendimento" required /> Sim</label>
+                    <label><input type="radio" name="q3" value="outro" /> Não</label>
+                </div>
+            </div>
+
+            <div class="question" id="q4">
+                <h3>4. Você gosta de trabalhar com análise de dados, estatísticas e números?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="analista" required /> Sim</label>
+                    <label><input type="radio" name="q4" value="outro" /> Não</label>
+                </div>
+            </div>
+
+            <button type="submit">Próxima Página</button>
+        </form>
+
+        <div id="result" aria-live="polite" style="display:none;"></div>
     </div>
-
     <script>
-        function getQueryParams() {
-            const params = {};
-            const queryString = window.location.search.substring(1);
-            const pairs = queryString.split("&");
-            for (const pair of pairs) {
-                if (pair === "") continue;
-                const [key, value] = pair.split("=");
-                params[decodeURIComponent(key)] = decodeURIComponent(value || "");
-            }
-            return params;
-        }
+        if (!window.location.search) {
+    window.location.href = "index.html";
+}
 
-        function analyzeResponses(answers) {
-            
-            if (!answers.q1 || !answers.q2 || !answers.q3 || !answers.q4) {
-                return "Por favor, responda todas as perguntas do teste.";
-            }
-
-            
-            const area = answers.q1.toLowerCase();
-            const isDesigner = answers.q2 === "designer";
-            const isAtendimento = answers.q3 === "atendimento";
-            const isAnalista = answers.q4 === "analista";
-
-            
-            const interestsCount = [isDesigner, isAtendimento, isAnalista].filter(Boolean).length;
-
-            
-            if (interestsCount === 0) {
-                return "Você não parece estar apto para as profissões atuais avaliadas. Considere explorar outras áreas ou buscar orientação profissional.";
-            }
-
-            
-            if (area === "tecnologia" && isAnalista) {
-                return "Programador(a) / Desenvolvedor(a) de Software";
-            }
-            if (isDesigner) {
-                return "Designer Gráfico / Digital";
-            }
-            if (isAtendimento && (area === "saúde" || area === "educação")) {
-                return "Atendimento / Suporte ao Cliente";
-            }
-            if (isAnalista && (area === "contábil" || area === "administrativa")) {
-                return "Analista de Dados / Cientista de Dados";
-            }
-            if (area === "tecnologia" || isAtendimento) {
-                return "Profissional de Marketing Digital / Social Media";
-            }
-
-            
-            return "Seu perfil é versátil! Considere profissões como Gestor(a) de Projetos ou Consultor(a) em sua área de atuação.";
-        }
-
-        const params = getQueryParams();
-        const resultDiv = document.getElementById("result");
-
-        if (Object.keys(params).length === 0) {
-            resultDiv.innerHTML = "Nenhuma resposta recebida. Por favor, faça o teste na página inicial.";
-        } else {
-            const profession = analyzeResponses(params);
-            resultDiv.innerHTML = `Seu perfil mais indicado é: <strong>${profession}</strong>.`;
-        }
     </script>
 </body>
 </html>
