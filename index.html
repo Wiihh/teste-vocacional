@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Teste Vocacional - Profissões Atuais</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Teste Vocacional - Profissões Atuais</h1>
+        <form id="vocationalForm" action="page2.html" method="GET">
+            <div class="question" id="q1">
+                <h3>1. Atualmente você tem trabalhado em qual tipo de área?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="Administrativa" required /> Administrativa</label>
+                    <label><input type="radio" name="q1" value="Saúde" /> Saúde</label>
+                    <label><input type="radio" name="q1" value="Tecnologia" /> Tecnologia</label>
+                    <label><input type="radio" name="q1" value="Jurídica" /> Jurídica</label>
+                    <label><input type="radio" name="q1" value="Educação" /> Educação</label>
+                    <label><input type="radio" name="q1" value="Contábil" /> Contábil</label>
+                </div>
+            </div>
+
+            <div class="question" id="q2">
+                <h3>2. Você gosta de trabalhar com criatividade, como design ou arte digital?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="designer" required /> Sim</label>
+                    <label><input type="radio" name="q2" value="outro" /> Não</label>
+                </div>
+            </div>
+
+            <div class="question" id="q3">
+                <h3>3. Você tem interesse em interagir e ajudar pessoas diretamente?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="atendimento" required /> Sim</label>
+                    <label><input type="radio" name="q3" value="outro" /> Não</label>
+                </div>
+            </div>
+
+            <div class="question" id="q4">
+                <h3>4. Você gosta de trabalhar com análise de dados, estatísticas e números?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="analista" required /> Sim</label>
+                    <label><input type="radio" name="q4" value="outro" /> Não</label>
+                </div>
+            </div>
+
+            <button type="submit">Próxima Página</button>
+        </form>
+
+        <div id="result" aria-live="polite" style="display:none;"></div>
+    </div>
+</body>
+</html>
