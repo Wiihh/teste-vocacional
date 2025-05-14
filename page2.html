@@ -73,31 +73,31 @@
         }
 
         function analyzeResponses(answers) {
-            // Verifica se todas as 8 perguntas foram respondidas
+      
             if (!answers.q1 || !answers.q2 || !answers.q3 || !answers.q4 ||
                 !answers.q5 || !answers.q6 || !answers.q7 || !answers.q8) {
                 return "Por favor, responda todas as perguntas do teste.";
             }
 
-            // Extrai respostas
-            const impacto = answers.q1.toLowerCase(); // tecnologia, sustentabilidade, saude, criatividade
-            const ambiente = answers.q2.toLowerCase(); // laboratorio, remoto, campo, estudio
-            const habilidade = answers.q3.toLowerCase(); // dados, criatividade, comunicacao, adaptabilidade
-            const tendencia = answers.q4.toLowerCase(); // ia, sustentabilidade, saude, realidade
-            const area = answers.q5.toLowerCase(); // tecnologia, saude, educacao, contabil, administrativa
+       
+            const impacto = answers.q1.toLowerCase(); 
+            const ambiente = answers.q2.toLowerCase();
+            const habilidade = answers.q3.toLowerCase(); 
+            const tendencia = answers.q4.toLowerCase(); 
+            const area = answers.q5.toLowerCase(); 
             const isDesigner = answers.q6 === "designer";
             const isAtendimento = answers.q7 === "atendimento";
             const isAnalista = answers.q8 === "analista";
 
-            // Contagem de interesses específicos
+           
             const interestsCount = [isDesigner, isAtendimento, isAnalista].filter(Boolean).length;
 
-            // Lógica de recomendação
+          
             if (interestsCount === 0) {
                 return "Você não parece estar apto para as profissões avaliadas. Considere explorar outras áreas ou buscar orientação profissional.";
             }
 
-            // Prioridade para área (q5) e habilidades específicas (q6, q7, q8)
+         
             if (area === "tecnologia" && isAnalista && (impacto === "tecnologia" || tendencia === "ia")) {
                 return "Programador(a) / Desenvolvedor(a) de Software";
             }
@@ -126,7 +126,7 @@
                 return "Gestor(a) de Projetos / Consultor(a) de Transformação Digital";
             }
 
-            // Fallback para perfis versáteis
+         
             return "Seu perfil é versátil! Considere profissões como Gestor(a) de Projetos ou Consultor(a) em sua área de atuação.";
         }
 
