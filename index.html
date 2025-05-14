@@ -5,56 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Teste Vocacional - Profissões Atuais</title>
     <link rel="stylesheet" href="Style.css">
+    <style>
+        #container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; }
+        .question { margin-bottom: 20px; }
+        .options { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+        button { padding: 10px 20px; font-size: 1em; cursor: pointer; display: block; margin: 20px auto; }
+    </style>
 </head>
 <body>
     <div id="container">
         <h1>Teste Vocacional - Profissões Atuais</h1>
         <form id="vocationalForm" action="page2.html" method="GET">
             <div class="question" id="q1">
-                <h3>1. Qual tipo de impacto você gostaria de causar no mundo com sua profissão:</h3>
+                <h3>1. Qual tipo de impacto você gostaria de causar no mundo com sua profissão?</h3>
                 <div class="options">
-                    <label><input type="radio" name="q1" value="Administrativa" required /> Avançar a tecnologia para resolver problemas globais</label>
-                    <label><input type="radio" name="q1" value="Saúde" /> Promover sustentabilidade e proteger o meio ambiente</label>
-                    <label><input type="radio" name="q1" value="Tecnologia" /> Melhorar a qualidade de vida das pessoas</label>
-                     <label><input type="radio" name="q1" value="Tecnologia" /> Criar experiências inovadoras e culturais</label>
-                    
+                    <label><input type="radio" name="q1" value="tecnologia" required /> Avançar a tecnologia para resolver problemas globais</label>
+                    <label><input type="radio" name="q1" value="sustentabilidade" /> Promover sustentabilidade e proteger o meio ambiente</label>
+                    <label><input type="radio" name="q1" value="saude" /> Melhorar a qualidade de vida das pessoas</label>
+                    <label><input type="radio" name="q1" value="criatividade" /> Criar experiências inovadoras e culturais</label>
                 </div>
             </div>
 
             <div class="question" id="q2">
-                <h3>2. Que tipo de ambiente de trabalho mais te atrai? ?</h3>
+                <h3>2. Que tipo de ambiente de trabalho mais te atrai?</h3>
                 <div class="options">
-                    <label><input type="radio" name="q2" value="designer" required /> Laboratórios ou centros de pesquisa com foco em inovação tecnológica</label>
-                    <label><input type="radio" name="q2" value="outro" /> Trabalho remoto ou híbrido, com flexibilidade e uso de ferramentas digitais</label>
-                    <label><input type="radio" name="q2" value="outro" />Campo ou projetos ao ar livre, lidando com recursos naturais ou comunidades. </label>
-                    <label><input type="radio" name="q2" value="outro" /> Estúdios criativos ou espaços colaborativos para desenvolver ideias artísticas ou multimídia.</label>
+                    <label><input type="radio" name="q2" value="laboratorio" required /> Laboratórios ou centros de pesquisa com foco em inovação tecnológica</label>
+                    <label><input type="radio" name="q2" value="remoto" /> Trabalho remoto ou híbrido, com flexibilidade e uso de ferramentas digitais</label>
+                    <label><input type="radio" name="q2" value="campo" /> Campo ou projetos ao ar livre, lidando com recursos naturais ou comunidades</label>
+                    <label><input type="radio" name="q2" value="estudio" /> Estúdios criativos ou espaços colaborativos para desenvolver ideias artísticas ou multimídia</label>
                 </div>
             </div>
 
             <div class="question" id="q3">
                 <h3>3. Qual habilidade você gostaria de desenvolver ou usar mais no futuro?</h3>
                 <div class="options">
-                    <label><input type="radio" name="q3" value="atendimento" required />Resolução de problemas complexos com dados e algoritmos (ex.: ciência de dados, cibersegurança).</label>
-                    <label><input type="radio" name="q3" value="outro" />Criatividade para criar histórias ou produtos inovadores.</label>
-                    <label><input type="radio" name="q3" value="outro" /> Comunicação e empatia para trabalhar com pessoas ou comunidades.</label>
-                    <label><input type="radio" name="q3" value="outro" /> Adaptabilidade para gerenciar mudanças e incertezas</label>
+                    <label><input type="radio" name="q3" value="dados" required /> Resolução de problemas complexos com dados e algoritmos</label>
+                    <label><input type="radio" name="q3" value="criatividade" /> Criatividade para criar histórias ou produtos inovadores</label>
+                    <label><input type="radio" name="q3" value="comunicacao" /> Comunicação e empatia para trabalhar com pessoas ou comunidades</label>
+                    <label><input type="radio" name="q3" value="adaptabilidade" /> Adaptabilidade para gerenciar mudanças e incertezas</label>
                 </div>
             </div>
 
             <div class="question" id="q4">
-                <h3>4. Qual dessas tendências futuras você acha mais interessante para trabalhar</h3>
+                <h3>4. Qual dessas tendências futuras você acha mais interessante para trabalhar?</h3>
                 <div class="options">
-                    <label><input type="radio" name="q4" value="analista" required />Inteligência artificial e automação</label>
-                    <label><input type="radio" name="q4" value="outro" /> Economia verde e sustentabilidade</label>
-                    <label><input type="radio" name="q3" value="outro" /> Saúde e bem-estar personalizados</label>
-                    <label><input type="radio" name="q3" value="outro" />Realidade estendida e mundos virtuais</label>
+                    <label><input type="radio" name="q4" value="ia" required /> Inteligência artificial e automação</label>
+                    <label><input type="radio" name="q4" value="sustentabilidade" /> Economia verde e sustentabilidade</label>
+                    <label><input type="radio" name="q4" value="saude" /> Saúde e bem-estar personalizados</label>
+                    <label><input type="radio" name="q4" value="realidade" /> Realidade estendida e mundos virtuais</label>
                 </div>
             </div>
 
             <button type="submit">Próxima Página</button>
         </form>
-
-        <div id="result" aria-live="polite" style="display:none;"></div>
     </div>
 </body>
 </html>
